@@ -33,6 +33,7 @@ class AlgorithmType(str, Enum):
     AE = "ae"
     AE_UMAP = "ae-umap"
 
+
 ALGORITHM_TO_LABEL: dict[AlgorithmType, str] = {
     AlgorithmType.PCA: "PCA",
     AlgorithmType.TSNE: "t-SNE",
@@ -41,6 +42,7 @@ ALGORITHM_TO_LABEL: dict[AlgorithmType, str] = {
     AlgorithmType.AE: "AE",
     AlgorithmType.AE_UMAP: "AE + UMAP",
 }
+
 
 class BaseReducerAlgorithm(metaclass=abc.ABCMeta):
     def __init__(
@@ -200,7 +202,7 @@ class LLEAlgorithm(SKLearnLikeAlgorithm):
             dataset_type=dataset_type,
             dataset=dataset,
             embed_dim=embed_dim)
-        
+
         self.seed = seed
         match dataset_type:
             case DatasetType.MNIST | DatasetType.FASHION_MNIST | DatasetType.CIFAR10 | DatasetType.CIFAR100:
@@ -235,7 +237,7 @@ class UMAPAlgorithm(SKLearnLikeAlgorithm):
             dataset_type=dataset_type,
             dataset=dataset,
             embed_dim=embed_dim)
-        
+
         self.seed = seed
         match dataset_type:
             case DatasetType.MNIST | DatasetType.FASHION_MNIST | DatasetType.CIFAR10 | DatasetType.CIFAR100:

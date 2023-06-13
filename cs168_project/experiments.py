@@ -36,6 +36,7 @@ from cs168_project.evaluation import ExperimentStatsRunner, ExperimentStats
 DEFAULT_EXPERIMENTS_DIR = get_rel_pkg_path("experiment_cache/")
 os.makedirs(DEFAULT_EXPERIMENTS_DIR, exist_ok=True)
 
+
 @dataclass(kw_only=True)
 class BaseDatasetConfig(JSONDictSerializable):
     dataset_type: DatasetType
@@ -62,7 +63,7 @@ class ImageDatasetConfig(BaseDatasetConfig):
     seed: int = 0
 
     def __post_init__(
-            self: Self):
+            self: Self) -> None:
 
         self.num_samples = DATASET_TO_NUM_SAMPLES[self.dataset_type]
         if self.num_samples_limit is not None:
@@ -128,7 +129,7 @@ class SKLearnCustomDatasetConfig(BaseDatasetConfig):
     seed: int = 0
 
     def __post_init__(
-            self: Self):
+            self: Self) -> None:
 
         assert self.dataset_type == DatasetType.SKLEARN_CUSTOM
         assert self.num_samples >= 1000
@@ -190,7 +191,7 @@ class SKLearnPresetDatasetConfig(BaseDatasetConfig):
     num_samples_limit: Optional[int] = None
 
     def __post_init__(
-            self: Self):
+            self: Self) -> None:
 
         self.num_samples = DATASET_TO_NUM_SAMPLES[self.dataset_type]
         assert self.dataset_type in (DatasetType.SKLEARN_IRIS, DatasetType.SKLEARN_DIGITS)
@@ -413,6 +414,7 @@ class UMAPAlgorithmConfig(BaseAlgorithmConfig):
 class AEAlgorithmConfig(JSONDictSerializable):
     pass
 
+
 @dataclass(kw_only=True)
 class ExperimentSetup:
     dataset: Dataset
@@ -422,15 +424,9 @@ class ExperimentSetup:
 
 @dataclass(kw_only=True)
 class ExperimentConfig(JSONDictSerializable):
-    def __init__(
-        self: Self,
-            dataset_config: BaseDatasetConfig,
-            algorithm_config: BaseAlgorithmConfig,
-            trial_index: Optional[int] = None) -> None:
-
-        self.dataset_config = dataset_config
-        self.algorithm_config = algorithm_config
-        self.trial_index = trial_index
+    dataset_config: BaseDatasetConfig
+    algorithm_config: BaseAlgorithmConfig
+    trial_index: Optional[int] = None
 
     def to_dict(
             self: Self) -> dict[str, Any]:
@@ -502,13 +498,8 @@ class ExperimentConfig(JSONDictSerializable):
 
 @dataclass(kw_only=True)
 class ExperimentState(JSONDictSerializable):
-    def __init__(
-            self,
-            run_complete=False,
-            stats_complete=False) -> None:
-
-        self.alg_complete = run_complete
-        self.stats_complete = stats_complete
+    alg_complete: bool = False
+    stats_complete: bool = False
 
     def to_dict(
             self: Self) -> dict[str, Any]:
@@ -597,7 +588,7 @@ class ExperimentManager:
 
     def _get_workspace_dir_from_hash(
             self: Self,
-            key: str):
+            key: str) -> os.PathLike:
 
         return os.path.join(self.experiment_dir, key)
 

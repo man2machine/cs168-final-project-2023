@@ -8,7 +8,7 @@ Created on Sun Jun 11 01:57:13 2023
 import os
 from enum import Enum
 from typing import Self, Any, Optional, TypeVar, Generic
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Iterable, Sequence
 
 import numpy as np
 import numpy.typing as npt
@@ -58,7 +58,7 @@ FLAT_NP_DATASETS: list[DatasetType] = [
     DatasetType.SKLEARN_IRIS,
     DatasetType.SKLEARN_DIGITS
 ]
-DATASET_TO_SHAPE: dict[DatasetType, Iterable[int]] = {
+DATASET_TO_SHAPE: dict[DatasetType, Sequence[int]] = {
     DatasetType.MNIST: (1, 28, 28),
     DatasetType.FASHION_MNIST: (1, 28, 28),
     DatasetType.CIFAR10: (3, 32, 32),
