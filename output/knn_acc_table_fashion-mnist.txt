@@ -1,4 +1,4 @@
-\\textbf{k} & \textbf{PCA} & \textbf{LLE} & \textbf{t-SNE} & \textbf{UMAP} &  \\ 
+\textbf{k} & \textbf{PCA} & \textbf{LLE} & \textbf{t-SNE} & \textbf{UMAP} &  \\ 
 5 & 0.65 {\tiny ($\pm$ 0.0000)} & 0.75 {\tiny ($\pm$ 0.0003)} & 0.86 {\tiny ($\pm$ 0.0001)} & 0.82 {\tiny ($\pm$ 0.0009)} &  \\ 
 50 & 0.58 {\tiny ($\pm$ 0.0000)} & 0.69 {\tiny ($\pm$ 0.0002)} & 0.79 {\tiny ($\pm$ 0.0003)} & 0.77 {\tiny ($\pm$ 0.0009)} &  \\ 
 100 & 0.57 {\tiny ($\pm$ 0.0000)} & 0.68 {\tiny ($\pm$ 0.0000)} & 0.78 {\tiny ($\pm$ 0.0001)} & 0.76 {\tiny ($\pm$ 0.0012)} &  \\ 
