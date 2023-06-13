@@ -13,5 +13,5 @@ dependencies:
   - jupyter
   - tqdm
   - scikit-learn
-  - gym
+  - umap-learn
   - autopep8
